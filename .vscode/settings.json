@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": false,
+  "editor.tabSize": 2,
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "prettier.disableLanguages": ["html"],
+  "html.format.enable": true,
+  "html.format.wrapAttributes": "force-expand-multiline"
+}
