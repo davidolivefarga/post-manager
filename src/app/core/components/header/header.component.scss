@@ -1,0 +1,30 @@
+@import '_constants';
+
+mat-toolbar-row {
+	height: 4.5rem;
+	align-items: center;
+	justify-content: space-between;
+	.app-title {
+		display: flex;
+		align-items: center;
+		i {
+			margin-right: 10px;
+		}
+	}
+	.app-author {
+		display: flex;
+		flex-direction: column;
+		line-height: $font-size-small;
+		.app-author-name {
+			font-size: $font-size-small;
+			font-style: italic;
+			margin-bottom: 5px;
+		}
+		.app-author-links {
+			text-align: right;
+			i {
+				margin-left: 10px;
+			}
+		}
+	}
+}
