@@ -5,6 +5,7 @@
     "ng": "ng",
     "serve": "ng serve",
     "start": "node server.js",
+    "docker": "docker-compose up",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
