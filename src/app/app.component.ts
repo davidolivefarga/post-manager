@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { TestService } from './test.service';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	title = 'wefox-challenge';
+
+	constructor(private service: TestService) {
+		this.service.test();
+	}
 }
