@@ -1,3 +1,11 @@
+<div class="button-panel">
+	<button class="primary">Create new</button>
+	<button
+		class="danger"
+		[class.hidden]="!isAnyPostSelected()"
+	>Delete</button>
+</div>
+
 <table
 	mat-table
 	[dataSource]="posts"

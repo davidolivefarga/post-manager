@@ -49,6 +49,10 @@ export class PostListComponent implements OnInit, OnDestroy {
 		return this.selection.selected.length === this.posts.length;
 	}
 
+	isAnyPostSelected(): boolean {
+		return this.selection.selected.length > 0;
+	}
+
 	onMasterToggle(): void {
 		this.isAllPostsSelected() ? this.selection.clear() : this.posts.forEach((row) => this.selection.select(row));
 	}
