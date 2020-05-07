@@ -10,6 +10,7 @@ import { SharedModule } from '@shared/shared.module';
 import { ROOT_REDUCERS, ROOT_EFFECTS } from '@store/index';
 import { environment } from '@environments/environment';
 import { PageNotFoundComponent, HeaderComponent } from '@core/components';
+import { PostService } from '@core/services';
 
 @NgModule({
 	declarations: [PageNotFoundComponent, HeaderComponent],
@@ -30,6 +31,6 @@ import { PageNotFoundComponent, HeaderComponent } from '@core/components';
 		EffectsModule.forRoot(ROOT_EFFECTS)
 	],
 	exports: [PageNotFoundComponent, HeaderComponent],
-	providers: []
+	providers: [PostService]
 })
 export class CoreModule {}

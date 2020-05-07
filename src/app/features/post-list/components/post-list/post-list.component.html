@@ -1,3 +1,146 @@
-<p>POST LIST</p>
+<table
+	mat-table
+	[dataSource]="posts"
+	class="mat-elevation-z8"
+>
 
-<a [routerLink]="['/post', '1']">Navigate to post</a>
+	<!-- Checkbox Column -->
+	<ng-container matColumnDef="select">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		>
+			<mat-checkbox
+				(change)="$event ? onMasterToggle() : null"
+				[checked]="selection.hasValue() && isAllPostsSelected()"
+				[indeterminate]="selection.hasValue() && !isAllPostsSelected()"
+			>
+			</mat-checkbox>
+		</th>
+		<td
+			mat-cell
+			*matCellDef="let row"
+		>
+			<mat-checkbox
+				(click)="$event.stopPropagation()"
+				(change)="$event ? selection.toggle(row) : null"
+				[checked]="selection.isSelected(row)"
+			>
+			</mat-checkbox>
+		</td>
+	</ng-container>
+
+	<!-- Id Column -->
+	<ng-container matColumnDef="id">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		> Id </th>
+		<td
+			mat-cell
+			*matCellDef="let element"
+		> {{element.id}} </td>
+	</ng-container>
+
+	<!-- Title Column -->
+	<ng-container matColumnDef="title">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		> Title </th>
+		<td
+			mat-cell
+			*matCellDef="let element"
+		> {{element.title}} </td>
+	</ng-container>
+
+	<!-- Content Column -->
+	<ng-container matColumnDef="content">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		> Content </th>
+		<td
+			mat-cell
+			*matCellDef="let element"
+		> {{element.content}} </td>
+	</ng-container>>
+
+	<!-- Image Column -->
+	<ng-container matColumnDef="image">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		> Image </th>
+		<td
+			mat-cell
+			*matCellDef="let element"
+		> <img [src]="element.image_url"> </td>
+	</ng-container>
+
+	<!-- Location Column -->
+	<ng-container matColumnDef="location">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		> Location </th>
+		<td
+			mat-cell
+			*matCellDef="let element"
+		>
+			<div
+				class="map"
+				leaflet
+				[leafletOptions]="
+				getLeafletOptions(element)"
+			>
+			</div>
+		</td>
+	</ng-container>
+
+	<!-- Created Column -->
+	<ng-container matColumnDef="created">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		> Created </th>
+		<td
+			mat-cell
+			*matCellDef="let element"
+		> {{ element.created_at | date:'medium' }} </td>
+	</ng-container>
+
+	<!-- Updated Column -->
+	<ng-container matColumnDef="updated">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		> Updated </th>
+		<td
+			mat-cell
+			*matCellDef="let element"
+		> {{ element.updated_at | date:'medium' }} </td>
+	</ng-container>
+
+	<!-- Edit Column -->
+	<ng-container matColumnDef="edit">
+		<th
+			mat-header-cell
+			*matHeaderCellDef
+		> </th>
+		<td
+			mat-cell
+			*matCellDef="let element"
+		> <i class="fa fa-edit fa-2x"></i> </td>
+	</ng-container>
+
+	<tr
+		mat-header-row
+		*matHeaderRowDef="displayedColumns"
+	></tr>
+	<tr
+		mat-row
+		*matRowDef="let row; columns: displayedColumns;"
+	>
+	</tr>
+</table>

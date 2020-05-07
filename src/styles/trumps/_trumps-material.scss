@@ -1,0 +1,10 @@
+@import './constants/constants';
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+	background-color: $purple-heart;
+}
+
+.mat-ripple-element {
+	background-color: $gray-nickel !important;
+}
