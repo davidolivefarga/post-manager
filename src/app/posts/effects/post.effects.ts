@@ -21,4 +21,40 @@ export class PostEffects {
 			)
 		)
 	);
+
+	createPost$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(PostActions.createPost),
+			switchMap(({ post }) =>
+				this.postService.createPost(post).pipe(
+					map((p) => PostActions.createPostSuccess({ post: p })),
+					catchError((error) => of(PostActions.createPostFail({ error })))
+				)
+			)
+		)
+	);
+
+	updatePost$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(PostActions.updatePost),
+			switchMap(({ post }) =>
+				this.postService.updatePost(post).pipe(
+					map((p) => PostActions.updatePostSuccess({ post: p })),
+					catchError((error) => of(PostActions.updatePostFail({ error })))
+				)
+			)
+		)
+	);
+
+	deletePosts$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(PostActions.deletePosts),
+			switchMap(({ posts }) =>
+				this.postService.deletePosts(posts).pipe(
+					map(() => PostActions.deletePostsSuccess({ postIds: posts.map((post) => post.id) })),
+					catchError((error) => of(PostActions.deletePostsFail({ error })))
+				)
+			)
+		)
+	);
 }

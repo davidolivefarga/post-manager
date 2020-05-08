@@ -1,9 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Map, MapOptions, tileLayer, latLng } from 'leaflet';
 
+import { AppState } from '@store/index';
 import { Post } from '@posts/models';
+import { PostActions } from '@posts/actions';
 
 export interface PostFormData {
 	post: Post;
@@ -21,7 +24,11 @@ export class PostFormComponent {
 	private map: Map;
 	private changingMapCoordinates: boolean;
 
-	constructor(public dialogRef: MatDialogRef<PostFormComponent>, @Inject(MAT_DIALOG_DATA) public data: PostFormData) {
+	constructor(
+		public dialogRef: MatDialogRef<PostFormComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: PostFormData,
+		private store: Store<AppState>
+	) {
 		const post = data.post;
 
 		this.postFormTitle = post ? 'Edit post' : 'New post';
@@ -59,6 +66,17 @@ export class PostFormComponent {
 	}
 
 	onSaveForm() {
+		const now = new Date().toISOString();
+		const postFormGroupData = this.postFormGroup.getRawValue();
+
+		if (postFormGroupData.id) {
+			const post: Post = { ...postFormGroupData, updated_at: now };
+			this.store.dispatch(PostActions.updatePost({ post }));
+		} else {
+			const post: Post = { ...postFormGroupData, updated_at: now, created_at: now };
+			this.store.dispatch(PostActions.createPost({ post }));
+		}
+
 		this.dialogRef.close();
 	}
 

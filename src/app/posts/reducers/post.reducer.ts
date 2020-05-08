@@ -31,7 +31,12 @@ export const postReducer = createReducer<PostState>(
 		...postAdapter.addAll(posts, state),
 		loading: false,
 		loaded: true
-	}))
+	})),
+	on(PostActions.createPost, (state, { post }) => ({ ...postAdapter.addOne(post, state) })),
+	on(PostActions.updatePost, (state, { post }) => ({
+		...postAdapter.updateOne({ id: post.id, changes: { ...post } }, state)
+	})),
+	on(PostActions.deletePostsSuccess, (state, { postIds }) => ({ ...postAdapter.removeMany(postIds, state) }))
 );
 
 // Post state selectors

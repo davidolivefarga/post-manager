@@ -58,6 +58,10 @@ export class PostListComponent implements OnInit, OnDestroy {
 		this.openPostFormDialog(post);
 	}
 
+	deletePosts(): void {
+		this.store.dispatch(PostActions.deletePosts({ posts: this.selection.selected }));
+	}
+
 	isAllPostsSelected(): boolean {
 		return this.selection.selected.length === this.posts.length;
 	}
