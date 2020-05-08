@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { PostActions } from '@core/actions';
-import { PostService } from '@core/services';
+import { PostActions } from '@posts/actions';
+import { PostService } from '@posts/services';
 
 @Injectable()
 export class PostEffects {

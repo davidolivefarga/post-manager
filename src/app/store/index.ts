@@ -1,18 +1,17 @@
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap, Action } from '@ngrx/store';
 
-import { postFeatureKey, PostState, postReducer } from '@core/reducers';
-import { PostEffects } from '@core/effects';
+import { routerFeatureKey, RouterState, routerReducer } from '@core/reducers';
 
 export interface AppState {
-	[postFeatureKey]: PostState;
+	[routerFeatureKey]: RouterState;
 }
 
 // Injection token needed for AOT compilation
 export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState, Action>>('Root reducers token', {
 	factory: () => ({
-		[postFeatureKey]: postReducer
+		[routerFeatureKey]: routerReducer
 	})
 });
 
-export const ROOT_EFFECTS = [PostEffects];
+export const ROOT_EFFECTS = [];

@@ -5,9 +5,9 @@ import { Subscription } from 'rxjs';
 import { MapOptions, tileLayer, latLng } from 'leaflet';
 
 import { AppState } from '@store/index';
-import { selectPosts } from '@core/reducers';
-import { Post } from '@core/models';
-import { PostActions } from '@core/actions';
+import { selectPosts } from '@posts/reducers';
+import { Post } from '@posts/models';
+import { PostActions } from '@posts/actions';
 
 @Component({
 	selector: 'app-post-list',

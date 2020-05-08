@@ -1,1 +1,1 @@
-export * from './post.reducer';
+export * from './router.reducer';

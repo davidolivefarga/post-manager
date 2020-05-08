@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { CoreModule } from '@core/core.module';
-import { Post } from '@core/models';
+import { Post } from '@posts/models';
 
 @Injectable()
 export class PostService {

@@ -1,8 +1,8 @@
 import { createReducer, on, createFeatureSelector, createSelector } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { Post } from '@core/models';
-import { PostActions } from '@core/actions';
+import { Post } from '@posts/models';
+import { PostActions } from '@posts/actions';
 import { AppState } from '@store/index';
 
 export const postFeatureKey = 'post';
@@ -12,6 +12,10 @@ export const postAdapter: EntityAdapter<Post> = createEntityAdapter<Post>();
 export interface PostState extends EntityState<Post> {
 	loading: boolean;
 	loaded: boolean;
+}
+
+export interface ExtendedAppState extends AppState {
+	[postFeatureKey]: PostState;
 }
 
 export const initialPostState: PostState = postAdapter.getInitialState({
@@ -34,6 +38,6 @@ export const postReducer = createReducer<PostState>(
 
 const { selectAll } = postAdapter.getSelectors();
 
-export const selectPostState = createFeatureSelector<AppState, PostState>(postFeatureKey);
+export const selectPostState = createFeatureSelector<ExtendedAppState, PostState>(postFeatureKey);
 
 export const selectPosts = createSelector(selectPostState, selectAll);

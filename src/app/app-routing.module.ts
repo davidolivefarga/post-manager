@@ -6,11 +6,7 @@ import { PageNotFoundComponent } from '@core/components';
 const routes: Routes = [
 	{
 		path: 'posts',
-		loadChildren: () => import('./features/post-list/post-list.module').then((mod) => mod.PostListModule)
-	},
-	{
-		path: 'post/:id',
-		loadChildren: () => import('./features/post-details/post-details.module').then((mod) => mod.PostDetailsModule)
+		loadChildren: () => import('./posts/posts.module').then((mod) => mod.PostsModule)
 	},
 	{
 		path: '',
