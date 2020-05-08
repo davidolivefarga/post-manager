@@ -1,0 +1,93 @@
+<div class="post-form-header">
+	{{ postFormTitle }}
+</div>
+
+<div class="post-form-content">
+	<form
+		class="post-form"
+		[formGroup]="postFormGroup"
+	>
+		<!-- TITLE -->
+		<mat-form-field>
+			<mat-label>Title</mat-label>
+			<input
+				formControlName="title"
+				matInput
+				placeholder="Post title"
+			>
+		</mat-form-field>
+
+		<!-- CONTENT -->
+		<mat-form-field>
+			<mat-label>Content</mat-label>
+			<textarea
+				formControlName="content"
+				matInput
+				placeholder="Post content"
+			></textarea>
+		</mat-form-field>
+
+		<div class="post-image-map-wrapper">
+			<!-- IMAGE -->
+			<div class="post-image">
+				<mat-form-field>
+					<mat-label>Image URL</mat-label>
+					<input
+						formControlName="image_url"
+						matInput
+						placeholder="Image"
+					>
+				</mat-form-field>
+
+				<img [src]="postFormGroup.get('image_url').value">
+			</div>
+
+			<!-- MAP -->
+			<div class="post-map">
+				<div class="post-map-coordinates">
+					<mat-form-field class="post-map-coordinate">
+						<mat-label>Latitude</mat-label>
+						<input
+							formControlName="lat"
+							matInput
+							placeholder="Latitude"
+						>
+					</mat-form-field>
+
+					<mat-form-field class="post-map-coordinate">
+						<mat-label>Longitude</mat-label>
+						<input
+							formControlName="long"
+							matInput
+							placeholder="Longitude"
+						>
+					</mat-form-field>
+				</div>
+
+				<div
+					class="post-map"
+					leaflet
+					[leafletOptions]="getMapOptions()"
+					(leafletMapMove)="onMapMove()"
+					(leafletMapReady)="onMapReady($event)"
+				>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="post-form-footer">
+	<button
+		mat-raised-button
+		color="primary"
+		[disableRipple]="true"
+		(click)="onSaveForm()"
+	>Save</button>
+	<button
+		mat-raised-button
+		color="basic"
+		[disableRipple]="true"
+		(click)="onCloseForm()"
+	>Close</button>
+</div>

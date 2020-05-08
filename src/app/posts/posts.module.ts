@@ -5,13 +5,13 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '@shared/shared.module';
 import { PostsRoutingModule } from '@posts/posts-routing.module';
-import { PostListComponent, PostDetailsComponent } from '@posts/components';
+import { PostListComponent, PostFormComponent } from '@posts/components';
 import { PostService } from '@posts/services';
 import { postFeatureKey, postReducer } from '@posts/reducers';
 import { PostEffects } from '@posts/effects';
 
 @NgModule({
-	declarations: [PostListComponent, PostDetailsComponent],
+	declarations: [PostListComponent, PostFormComponent],
 	imports: [
 		CommonModule,
 		PostsRoutingModule,

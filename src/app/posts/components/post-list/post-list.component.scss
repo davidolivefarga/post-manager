@@ -12,19 +12,10 @@
 		width: 100%;
 		margin-bottom: 20px;
 		button {
-			color: $white;
 			width: 140px;
 			height: 40px;
-			border-radius: 4px;
 			font-size: $font-size-normal;
 			margin-right: 20px;
-			cursor: pointer;
-			&.primary {
-				background-color: $purple-heart;
-			}
-			&.danger {
-				background-color: $red;
-			}
 			&.hidden {
 				display: none;
 			}

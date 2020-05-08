@@ -1,0 +1,66 @@
+@import '_constants';
+
+:host {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	.post-form-header {
+		height: 47px;
+		background-color: $purple-heart;
+		color: $white;
+		display: flex;
+		align-items: center;
+		padding: 10px 20px;
+	}
+	.post-form-content {
+		height: 100%;
+		padding: 20px;
+		overflow: scroll;
+		.post-form {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			.post-image-map-wrapper {
+				display: flex;
+				height: 100%;
+				.post-image,
+				.post-map {
+					width: 50%;
+					display: flex;
+					flex-direction: column;
+				}
+				.post-image {
+					img {
+						width: 100%;
+					}
+				}
+				.post-map {
+					padding-left: 40px;
+					.post-map-coordinates {
+						display: flex;
+						justify-content: space-between;
+						.post-map-coordinate {
+							width: calc(50% - 10px);
+						}
+					}
+					.post-map {
+						box-sizing: border-box;
+						height: 100%;
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+	.post-form-footer {
+		border-top: 1px solid $gray-nickel;
+		height: 47px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 10px;
+		button {
+			margin-left: 10px;
+		}
+	}
+}
