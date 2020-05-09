@@ -6,7 +6,6 @@
 	align-items: center;
 	justify-content: center;
 	padding: 2rem;
-	font-family: Arial, Helvetica, sans-serif;
 
 	.button-panel {
 		width: 100%;
@@ -31,35 +30,32 @@
 			font-size: $font-size-normal;
 			font-weight: bold;
 		}
-		.mat-column-select,
-		.mat-column-id {
+		.mat-cell {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.mat-column-select {
 			width: 40px;
 		}
-		.mat-column-content {
-			padding: 10px 20px;
+		.mat-column-title,
+		.mat-column-content,
+		.mat-column-location,
+		.mat-column-image,
+		.mat-column-updated,
+		.mat-column-created {
+			padding-right: 20px;
 		}
-		.mat-column-location {
-			padding: 10px 10px 10px 0px;
-			.map {
-				width: 150px;
-				height: 100px;
-			}
-		}
-		.mat-column-image {
-			padding: 10px;
-			img {
-				width: 150px;
-			}
+
+		.mat-column-location .map,
+		.mat-column-image img {
+			width: 150px;
+			height: 100px;
 		}
 		.mat-column-updated,
 		.mat-column-created {
 			width: 100px;
-			padding-left: 10px;
 		}
-		.mat-column-created {
-			padding-right: 10px;
-		}
-		.mat-column-edit {
+		.mat-column-edit i {
 			cursor: pointer;
 		}
 	}

@@ -1,27 +1,20 @@
-# WefoxChallenge
+# Post Manager
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+This is an Angular application built for WeFox technical challenge.
 
-## Development server
+It shows a lists of posts and lets you create, update and delete them.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Post Manager](https://imgur.com/a/6jhs04w)
 
-## Code scaffolding
+## Tech stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- _Angular9_, as the main framework
+- _Angular Material_, for the UI components
+- _NGRX_, for the state management
+- _Leaflet_, for maps
 
-## Build
+## Running the app
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+To run the app locally, first of all run `npm install`to install all the dependencies. Then, run `ng serve` and the application will be available at http://localhost:4200. Make sure you are also running the API in local, which can be done through the `npm run docker`command.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The app is also hosted in Heroku, in the following link: https://wefox-challenge-dof.herokuapp.com/. I was not able to host the API, so in this case we also need to have the API running locally.
