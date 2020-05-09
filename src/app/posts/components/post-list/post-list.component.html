@@ -78,7 +78,10 @@
 		<td
 			mat-cell
 			*matCellDef="let element"
-		> <img [src]="element.image_url"> </td>
+		> <img
+				*ngIf="element.image_url"
+				[src]="element.image_url"
+			> </td>
 	</ng-container>
 
 	<!-- Location Column -->
