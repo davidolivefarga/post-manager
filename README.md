@@ -1,6 +1,6 @@
 # Post Manager
 
-This is an Angular application built for WeFox technical challenge.
+This is an Angular application used to manage posts.
 
 It shows a lists of posts and lets you create, update and delete them.
 
