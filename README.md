@@ -4,7 +4,7 @@ This is an Angular application built for WeFox technical challenge.
 
 It shows a lists of posts and lets you create, update and delete them.
 
-![Post Manager](https://imgur.com/a/6jhs04w)
+![Post Manager](https://i.imgur.com/PJcZOLY.png)
 
 ## Tech stack
 
