@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Map, MapOptions, tileLayer, latLng } from 'leaflet';
@@ -20,9 +20,9 @@ export interface PostFormData {
 export class PostFormComponent {
 	postFormTitle: string;
 	postFormGroup: FormGroup;
+	mapOptions: MapOptions;
 
 	private map: Map;
-	private changingMapCoordinates: boolean;
 
 	constructor(
 		public dialogRef: MatDialogRef<PostFormComponent>,
@@ -30,42 +30,44 @@ export class PostFormComponent {
 		private store: Store<AppState>
 	) {
 		const post = data.post;
+		const postLat = post ? Number(post.lat) : 41.3851;
+		const postLng = post ? Number(post.long) : 2.1734;
 
 		this.postFormTitle = post ? 'Edit post' : 'New post';
 
 		this.postFormGroup = new FormGroup({
 			id: new FormControl(post ? post.id : ''),
-			title: new FormControl(post ? post.title : ''),
-			content: new FormControl(post ? post.content : ''),
-			lat: new FormControl({ value: post ? Number(post.lat) : 41.3851, disabled: true }),
-			long: new FormControl({ value: post ? Number(post.long) : 2.1734, disabled: true }),
+			title: new FormControl(post ? post.title : '', Validators.required),
+			content: new FormControl(post ? post.content : '', Validators.required),
+			lat: new FormControl({ value: postLat, disabled: true }),
+			long: new FormControl({ value: postLng, disabled: true }),
 			image_url: new FormControl(post ? post.image_url : '')
 		});
-	}
 
-	onMapReady(map: Map) {
-		this.map = map;
-	}
-
-	getMapOptions(): MapOptions {
-		return <MapOptions>{
-			layers: [
-				tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', { maxZoom: 18, attribution: '...' })
-			],
-			zoom: 9,
-			center: latLng(this.postFormGroup.get('lat').value, this.postFormGroup.get('long').value)
+		this.mapOptions = {
+			layers: [tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', { maxZoom: 18 })],
+			center: latLng(postLat, postLng),
+			zoom: 9
 		};
 	}
 
-	onMapMove(): void {
-		if (!this.changingMapCoordinates) {
-			const mapCenter = this.map.getCenter();
-			this.postFormGroup.get('lat').setValue(mapCenter.lat);
-			this.postFormGroup.get('long').setValue(mapCenter.lng);
-		}
+	onMapReady(map: Map): void {
+		this.map = map;
 	}
 
-	onSaveForm() {
+	onMapMove(): void {
+		const mapCenter = this.map.getCenter();
+		this.postFormGroup.get('lat').setValue(mapCenter.lat);
+		this.postFormGroup.get('long').setValue(mapCenter.lng);
+	}
+
+	isSaveDisabled(): boolean {
+		return (
+			this.postFormGroup.get('title').hasError('required') || this.postFormGroup.get('content').hasError('required')
+		);
+	}
+
+	onSaveForm(): void {
 		const now = new Date().toISOString();
 		const postFormGroupData = this.postFormGroup.getRawValue();
 
@@ -80,7 +82,7 @@ export class PostFormComponent {
 		this.dialogRef.close();
 	}
 
-	onCloseForm() {
+	onCloseForm(): void {
 		this.dialogRef.close();
 	}
 }

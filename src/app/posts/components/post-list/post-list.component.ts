@@ -41,11 +41,9 @@ export class PostListComponent implements OnInit, OnDestroy {
 
 	getLeafletOptions(post: Post): MapOptions {
 		return <MapOptions>{
-			layers: [
-				tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', { maxZoom: 18, attribution: '...' })
-			],
-			zoom: 9,
-			center: latLng(Number(post.lat), Number(post.long))
+			layers: [tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', { maxZoom: 18 })],
+			center: latLng(Number(post.lat), Number(post.long)),
+			zoom: 9
 		};
 	}
 

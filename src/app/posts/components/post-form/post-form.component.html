@@ -9,7 +9,7 @@
 	>
 		<!-- TITLE -->
 		<mat-form-field>
-			<mat-label>Title</mat-label>
+			<mat-label>Title *</mat-label>
 			<input
 				formControlName="title"
 				matInput
@@ -19,7 +19,7 @@
 
 		<!-- CONTENT -->
 		<mat-form-field>
-			<mat-label>Content</mat-label>
+			<mat-label>Content *</mat-label>
 			<textarea
 				formControlName="content"
 				matInput
@@ -35,7 +35,7 @@
 					<input
 						formControlName="image_url"
 						matInput
-						placeholder="Image"
+						placeholder="Image URL"
 					>
 				</mat-form-field>
 
@@ -67,7 +67,7 @@
 				<div
 					class="post-map"
 					leaflet
-					[leafletOptions]="getMapOptions()"
+					[leafletOptions]="mapOptions"
 					(leafletMapMove)="onMapMove()"
 					(leafletMapReady)="onMapReady($event)"
 				>
@@ -82,6 +82,7 @@
 		mat-raised-button
 		color="primary"
 		[disableRipple]="true"
+		[disabled]="isSaveDisabled()"
 		(click)="onSaveForm()"
 	>Save</button>
 	<button
