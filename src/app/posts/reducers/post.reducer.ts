@@ -46,3 +46,7 @@ const { selectAll } = postAdapter.getSelectors();
 export const selectPostState = createFeatureSelector<ExtendedAppState, PostState>(postFeatureKey);
 
 export const selectPosts = createSelector(selectPostState, selectAll);
+
+export const selectSortedPosts = createSelector(selectPosts, (posts) =>
+	posts.sort((p1, p2) => (new Date(p1.updated_at) < new Date(p2.updated_at) ? 1 : -1))
+);

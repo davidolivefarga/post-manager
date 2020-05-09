@@ -1,4 +1,3 @@
-import { PostFormData } from './../post-form/post-form.component';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,10 +6,10 @@ import { Subscription } from 'rxjs';
 import { MapOptions, tileLayer, latLng } from 'leaflet';
 
 import { AppState } from '@store/index';
-import { selectPosts } from '@posts/reducers';
+import { selectSortedPosts } from '@posts/reducers';
 import { Post } from '@posts/models';
 import { PostActions } from '@posts/actions';
-import { PostFormComponent } from '../post-form/post-form.component';
+import { PostFormComponent, PostFormData } from '../post-form/post-form.component';
 
 @Component({
 	selector: 'app-post-list',
@@ -18,7 +17,7 @@ import { PostFormComponent } from '../post-form/post-form.component';
 	styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit, OnDestroy {
-	displayedColumns: string[] = ['select', 'id', 'title', 'content', 'location', 'image', 'updated', 'created', 'edit'];
+	displayedColumns: string[] = ['select', 'title', 'content', 'location', 'image', 'updated', 'created', 'edit'];
 	selection = new SelectionModel<any>(true, []);
 	posts: Post[];
 
@@ -30,7 +29,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 		this.store.dispatch(PostActions.loadPosts());
 
 		this.subscriptions.add(
-			this.store.pipe(select(selectPosts)).subscribe((posts) => {
+			this.store.pipe(select(selectSortedPosts)).subscribe((posts) => {
 				this.posts = posts;
 			})
 		);
